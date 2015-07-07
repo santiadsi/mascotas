@@ -1,0 +1,22 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16/04/2015, 01:10:56 PM
+    Author     : Andres
+*/
+#imagenlogo {
+    position: absolute;
+    top: 70px;
+    left: 5px;
+}
+
+body {
+    background-image: url("Imagenes/fondo.gif"); 
+    background-attachment:fixed;
+    background-position:center;
+}
+
+
