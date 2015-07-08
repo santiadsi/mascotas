@@ -93,7 +93,7 @@
 
                     <div class="form-group">
                         <div class="col-md-5 col-md-offset-2">
-                            <input type="submit" value="Registrarf!!" class="btn btn-success" />
+                            <input type="submit" value="Registrar!!" class="btn btn-success" />
                         </div>
                     </div>
 
