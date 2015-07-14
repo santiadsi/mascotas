@@ -51,8 +51,8 @@
                 </div>
             </div>
         </nav>   
-                        <a href="ServletRegistroMascotas" class="btn btn-success">Exportar tabla Excel</a>  
-                        
+        <a href="ServletRegistroMascotas" class="btn btn-success">Exportar tabla Excel</a>  
+        <a href="Servletpdf" class="btn btn-success">Normas pdf</a> 
         <div class="container">
             <center><h1>Tabla Mascotas del <%= u%></h1></center>
             <table class="table table-striped">
