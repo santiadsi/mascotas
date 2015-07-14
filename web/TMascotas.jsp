@@ -50,8 +50,9 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-
+        </nav>   
+                        <a href="ServletRegistroMascotas" class="btn btn-success">Exportar tabla Excel</a>  
+                        
         <div class="container">
             <center><h1>Tabla Mascotas del <%= u%></h1></center>
             <table class="table table-striped">
@@ -114,7 +115,6 @@
                     %>
                 </tbody>
             </table>
-
-        </div>
+        </div>    
     </body>
 </html>

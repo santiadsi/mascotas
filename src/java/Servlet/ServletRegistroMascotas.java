@@ -6,7 +6,9 @@
 package Servlet;
 
 import Controller.conectadb;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +19,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 import javax.servlet.http.HttpSession;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 /**
  *
  * @author Santiago
@@ -62,7 +68,33 @@ public class ServletRegistroMascotas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            HttpSession session = request.getSession(true);
+            String u = (String) session.getAttribute("usuario");
+            
+            HSSFWorkbook wb = new HSSFWorkbook();
+            HSSFSheet sheet = wb.createSheet();
+            
+            HSSFRow row = sheet.createRow(20);
+            HSSFCell cell = row.createCell(20);
+            cell.setCellValue("Some text");
+            
+            HSSFRow row2 = sheet.createRow(3);
+            HSSFCell cell2 = row2.createCell(5);
+            cell2.setCellValue("Some text");
+            
+            // write it as an excel attachment
+            
+            ByteArrayOutputStream outByteStream = new ByteArrayOutputStream();
+            wb.write(outByteStream);
+            byte [] outArray = outByteStream.toByteArray();
+            response.setContentType("application/ms-excel");
+            response.setContentLength(outArray.length);
+            response.setHeader("Expires:", "0"); // eliminates browser caching
+            response.setHeader("Content-Disposition", "attachment; filename=tabla.xls");
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(outArray);
+            outStream.flush();
+            
     }
 
     /**
