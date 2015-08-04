@@ -40,14 +40,16 @@
                         <li>
                             <a href="Registrarmascota.jsp">Registrar Mascotas</a>
                         </li>
-                        <li>
-                            <a style="left:820px;"><%= u%></a>
-                        </li>
-                        <li>
-                            <a style="left:830px;" href="Inicio.jsp">Cerrar Sesión</a>
-                        </li>
 
                     </ul>
+                     <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a><%= u%></a>
+                        </li>
+                        <li>
+                            <a href="Inicio.jsp">Cerrar Sesión</a>
+                        </li>
+                    </ul>  
                 </div>
             </div>
         </nav>   
@@ -62,6 +64,9 @@
                         <th>Especie</th>
                         <th>Tamaño</th>
                         <th>Usuario</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -99,6 +104,9 @@
                         <td><%= especie%></td>
                         <td><%= tamaño%></td>
                         <td><%= usua%></td>
+                        <td>mostrar</td>
+                        <td>editar</td>
+                        <td>eliminar</td>
                     </tr> 
 
                     <%  }

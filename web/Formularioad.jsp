@@ -29,14 +29,19 @@
                 <div class="navbar-collapse collapse" id="navbar-main">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="Inicio.jsp">Inicio</a>
-                        </li>
-                        <li> <a style="left:735px;"><%= m%></a></li>
-                        <li>
-                            <a style="left:735px;" href="Inicio.jsp">Cerrar Sesión</a>
+                            <a href="Iniciologueo.jsp">Inicio</a>
                         </li>
 
                     </ul>
+                        
+                     <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a><%= m%></a>
+                        </li>
+                        <li>
+                            <a href="Inicio.jsp">Cerrar Sesión</a>
+                        </li>
+                    </ul>  
                 </div>
             </div>
         </nav>

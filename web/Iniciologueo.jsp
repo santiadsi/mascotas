@@ -50,17 +50,20 @@
                         <li>
                             <a href="Registrarmascota.jsp">Registrar Mascotas</a>
                         </li>
-                        <li>
-                            <a style="left:470px;"><%= u%></a>
-                        </li>
-                        <li>
-                            <a style="left:500px;" href="Inicio.jsp">Cerrar Sesión</a>
-                        </li>
-
+                     
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a><%= u%></a>
+                        </li>
+                        <li>
+                            <a href="Inicio.jsp">Cerrar Sesión</a>
+                        </li>
+                    </ul>  
                 </div>
-            </div>
+            </div>   
         </nav>
+        
         <div class="container-fluid">
             <div class="jumbotron">
                 <h1>Bienvenido </h1>

@@ -39,14 +39,16 @@
                         <li>
                             <a href="TMascotas.jsp">Mascotas</a>
                         </li>
-                        <li>
-                            <a style="left:700px;"><%= u%></a>
-                        </li>
-                        <li>
-                            <a style="left:710px;" href="Inicio.jsp">Cerrar Sesión</a>
-                        </li>
 
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a><%= u%></a>
+                        </li>
+                        <li>
+                            <a href="Inicio.jsp">Cerrar Sesión</a>
+                        </li>
+                    </ul>  
                 </div>
             </div>
         </nav>
