@@ -103,7 +103,7 @@ public class ServletRegistro extends HttpServlet {
                 request.getRequestDispatcher("/Inicio.jsp").forward(request, response);
                 
             }else{
-                JOptionPane.showMessageDialog(null, "no se apodido hacer el registro");
+                request.getRequestDispatcher("/ErrorInicio.jsp").forward(request, response);
             }
             
             out.close();

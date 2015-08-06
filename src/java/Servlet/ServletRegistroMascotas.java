@@ -179,7 +179,7 @@ public class ServletRegistroMascotas extends HttpServlet {
                 request.getRequestDispatcher("/Iniciologueo.jsp").forward(request, response);
                 
             }else{
-                JOptionPane.showMessageDialog(null, "no se apodido hacer el registro");
+                request.getRequestDispatcher("/ErrorInicio.jsp").forward(request, response);
             }
             
             out.close();

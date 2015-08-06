@@ -103,10 +103,33 @@
                         <td><%= nombre%></td>
                         <td><%= especie%></td>
                         <td><%= tamaño%></td>
-                        <td><%= usua%></td>
-                        <td>mostrar</td>
-                        <td>editar</td>
-                        <td>eliminar</td>
+                        <td><%= usua%></td>  
+                        
+                        <!-- Operacion Mostrar -->
+                        <td>
+                            <form action="ServletCRUD" method="get">                      
+                                <div class="form-group">                                    
+                                    <input type="submit" value="Mostrar" class="btn btn-info"/>
+                                    
+                                </div>
+                            </form>
+                        </td>
+                        <!-- Operacion Ediatr -->
+                        <td>
+                            <form action="ServletCRUD" method="post">
+                                <div class="form-group">                                    
+                                    <input type="submit" value="Editar" class="btn btn-warning"/>                                   
+                                </div>
+                            </form>
+                        </td>
+                        <!-- Operacion Eliminar -->
+                        <td>
+                            <form action="ServletCRUD" method="Request">
+                                <div class="form-group">                                    
+                                    <input type="submit" value="Eliminar" class="btn btn-danger"/>                                   
+                                </div>
+                            </form>
+                        </td>
                     </tr> 
 
                     <%  }

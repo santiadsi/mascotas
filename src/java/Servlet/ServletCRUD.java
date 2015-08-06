@@ -1,23 +1,29 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Servlet;
 
+import Controller.conectadb;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Controller.conectadb;
-import java.sql.Connection;
-import java.sql.*;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Santiago
+ * @author Adsi
  */
-@WebServlet(name = "Servletautenticacion", urlPatterns = {"/Servletautenticacion"})
-public class Servletautenticacion extends HttpServlet {
+@WebServlet(name = "ServletCRUD", urlPatterns = {"/ServletCRUD"})
+public class ServletCRUD extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +42,10 @@ public class Servletautenticacion extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Servletautenticacion</title>");
+            out.println("<title>Servlet ServletCRUD</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Servletautenticacion at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletCRUD at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,7 +63,61 @@ public class Servletautenticacion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        try {
+            boolean buscar = false;
+            HttpSession session = request.getSession(true);
+            String usuario = (String) session.getAttribute("usuario");
+            
+            String nom = "";
+            String color = "";
+            String especie = "";
+            String raza = "";
+            String edad = "";
+            String tamaño = "";
+            
+            conectadb sqlite = new conectadb();
+            java.sql.Connection cn = sqlite.Conectar();
+            Statement st = cn.createStatement();
+            ResultSet rs;
+
+            String consulta = "Select * from mascota where usuario='" + usuario + "' ;";
+
+            rs = st.executeQuery(consulta);
+
+            while (rs.next()) {
+                nom = rs.getString(2);
+                color = rs.getString(3);
+                especie = rs.getString(4);
+                raza = rs.getString(5);
+                edad = rs.getString(6);
+                tamaño = rs.getString(8);
+                buscar = true;
+            }
+            
+            if (buscar) {
+
+                //Creamos la sesion 
+                
+                session.setAttribute("nom", nom);
+                session.setAttribute("color", color);
+                session.setAttribute("especie", especie);
+                session.setAttribute("raza", raza);
+                session.setAttribute("edad", edad);
+                session.setAttribute("tamaño", tamaño);
+               
+                //Mandamos estos atributos a la página bienvenida.jsp
+                request.getRequestDispatcher("/mostrar.jsp").forward(request, response);
+            } else {
+                //De lo contrario vamos a la página errorLogin.jsp
+                request.getRequestDispatcher("/ErrorInicio.jsp").forward(request, response);
+            }
+            
+        } catch (SQLException ex) {
+            out.println(ex.toString());
+        }
+        
     }
 
     /**
@@ -71,52 +131,17 @@ public class Servletautenticacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        PrintWriter out = response.getWriter();
-
-        try {
-            boolean buscar = false;
-
-            String email = request.getParameter("email");
-            String contraseña = request.getParameter("password");
-            String usuario = "";
-            String rol = "";
-       
-            conectadb sqlite = new conectadb();
-            java.sql.Connection cn = sqlite.Conectar();
-            Statement st = cn.createStatement();
-            ResultSet rs;
-
-            String consulta = "Select * from Usuarios where email='" + email + "' and contraseña='" + contraseña + "' ;";
-            
-            rs = st.executeQuery(consulta);
-
-            while (rs.next()) {
-                email = rs.getString(2);
-                usuario = rs.getString(4);
-                rol = rs.getString(5);
-               
-                buscar = true;
-            }
-
-            if (buscar) {
-
-                //Creamos la sesion 
-                HttpSession session = request.getSession(true);
-                session.setAttribute("email", email);
-                session.setAttribute("usuario", usuario);
-                session.setAttribute("rol", rol);
-               
-                //Mandamos estos atributos a la página bienvenida.jsp
-                request.getRequestDispatcher("/Iniciologueo.jsp").forward(request, response);
-            } else {
-                //De lo contrario vamos a la página errorLogin.jsp
-                request.getRequestDispatcher("/ErrorInicio.jsp").forward(request, response);
-            }
-            out.close();
-        } catch (SQLException ex) {
-            out.println(ex.toString());
-        }
+        //processRequest(request, response);
+         PrintWriter out = response.getWriter();
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletCRUD</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>servlet POST</h1>");
+            out.println("</body>");
+            out.println("</html>");
     }
 
     /**
