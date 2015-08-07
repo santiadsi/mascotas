@@ -25,127 +25,130 @@
             String r = (String) session.getAttribute("rol");
         %>
     </head>
-    <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">                
-                    <a href="Inicio.jsp" class="navbar-header"><img src="Imagenes/Logo mascotas.png" alt="logo" height="55" width="110"> </a>      
-                </div>
-
-                <div class="navbar-collapse collapse" id="navbar-main">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="Iniciologueo.jsp">Inicio</a>
-                        </li> 
-                        <li>
-                            <a href="Registrarmascota.jsp">Registrar Mascotas</a>
-                        </li>
-
-                    </ul>
-                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a><%= u%></a>
-                        </li>
-                        <li>
-                            <a href="Inicio.jsp">Cerrar Sesión</a>
-                        </li>
-                    </ul>  
-                </div>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">                
+                <a href="Inicio.jsp" class="navbar-header"><img src="Imagenes/Logo mascotas.png" alt="logo" height="55" width="110"> </a>      
             </div>
-        </nav>   
-        <a href="ServletRegistroMascotas" class="btn btn-success">Exportar tabla Excel</a>  
-        <a href="Servletpdf" class="btn btn-success">Normas pdf</a> 
-        <div class="container">
-            <center><h1>Tabla Mascotas del <%= u%></h1></center>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Especie</th>
-                        <th>Tamaño</th>
-                        <th>Usuario</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
+
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="Iniciologueo.jsp">Inicio</a>
+                    </li> 
+                    <li>
+                        <a href="Registrarmascota.jsp">Registrar Mascotas</a>
+                    </li>
+
+                </ul>
+                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a><%= u%></a>
+                    </li>
+                    <li>
+                        <a href="Inicio.jsp">Cerrar Sesión</a>
+                    </li>
+                </ul>  
+            </div>
+        </div>
+    </nav>   
+    <a href="ServletRegistroMascotas" class="btn btn-success">Exportar tabla Excel</a>  
+    <a href="Servletpdf" class="btn btn-success">Normas pdf</a> 
+    <div class="container">
+        <center><h1>Tabla Mascotas del <%= u%></h1></center>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Especie</th>
+                    <th>Tamaño</th>
+                    <th>Usuario</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
 
 
 
-                <%
-                    try {
-                        boolean buscar = false;
+            <%
+                try {
+                    boolean buscar = false;
 
-                        String nombre = "";
-                        String especie = "";
-                        String tamaño = "";
-                        String usua = "";
+                    String nombre = "";
+                    String especie = "";
+                    String tamaño = "";
+                    String usua = "";
+                    String id = "";
+                    
+                    conectadb sqlite = new conectadb();
+                    java.sql.Connection cn = sqlite.Conectar();
+                    Statement st = cn.createStatement();
+                    ResultSet rs;
 
-                        conectadb sqlite = new conectadb();
-                        java.sql.Connection cn = sqlite.Conectar();
-                        Statement st = cn.createStatement();
-                        ResultSet rs;
+                    String consulta = "Select idmascotas,nombre,especie,tamaño,usuario from mascota where usuario='" + u + "' ;";
 
-                        String consulta = "Select * from vistamascota where usuario='" + u + "' ;";
+                    rs = st.executeQuery(consulta);
 
-                        rs = st.executeQuery(consulta);
+                    while (rs.next()) {
+                        id = rs.getString(1);
+                        nombre = rs.getString(2);
+                        especie = rs.getString(3);
+                        tamaño = rs.getString(4); 
+                        usua = rs.getString(5);
+                                             
+                        buscar = true;
 
-                        while (rs.next()) {
-                            nombre = rs.getString(1);
-                            especie = rs.getString(2);
-                            tamaño = rs.getString(3);
-                            usua = rs.getString(4);
-                            buscar = true;
+            %>
+            <tbody>
+                <tr>
+                    <td><%= nombre%></td>
+                    <td><%= especie%></td>
+                    <td><%= tamaño%></td>
+                    <td><%= usua%></td>  
 
-                %>
-                <tbody>
-                    <tr>
-                        <td><%= nombre%></td>
-                        <td><%= especie%></td>
-                        <td><%= tamaño%></td>
-                        <td><%= usua%></td>  
-                        
-                        <!-- Operacion Mostrar -->
-                        <td>
-                            <form action="ServletCRUD" method="get">                      
-                                <div class="form-group">                                    
-                                    <input type="submit" value="Mostrar" class="btn btn-info"/>
-                                    
-                                </div>
-                            </form>
-                        </td>
-                        <!-- Operacion Ediatr -->
-                        <td>
-                            <form action="ServletCRUD" method="post">
-                                <div class="form-group">                                    
-                                    <input type="submit" value="Editar" class="btn btn-warning"/>                                   
-                                </div>
-                            </form>
-                        </td>
-                        <!-- Operacion Eliminar -->
-                        <td>
-                            <form action="ServletCRUD" method="Request">
-                                <div class="form-group">                                    
-                                    <input type="submit" value="Eliminar" class="btn btn-danger"/>                                   
-                                </div>
-                            </form>
-                        </td>
-                    </tr> 
+                    <!-- Operacion Mostrar -->
+                    <td>
+                        <form action="ServletCRUD" method="get">                      
+                            <div class="form-group">                                                       
+                                <input type="hidden" name="id" value="<%= id%>" />
+                                <input type="submit" value="Mostrar" class="btn btn-info"/>
+                            </div>
+                        </form>
+                    </td>
+                    <!-- Operacion Ediatr -->
+                    <td>
+                        <form action="ServletCRUD" method="post">
+                            <div class="form-group">                                    
+                                <input type="submit" value="Editar" class="btn btn-warning"/>                                   
+                            </div>
+                        </form>
+                    </td>
+                    <!-- Operacion Eliminar -->
+                    <td>
+                        <form action="ServletCRUD" method="Request">
+                            <div class="form-group">                                    
+                                <input type="submit" value="Eliminar" class="btn btn-danger"/>                                   
+                            </div>
+                        </form>
+                    </td>
+                </tr> 
 
-                    <%  }
+                <%  }
 
-                            if (buscar) {
+                        if (buscar) {
 
-                            } else {
+                        } else {
 
-                            }
-                            out.close();
-                        } catch (SQLException ex) {
-                            out.println(ex.toString());
                         }
-                    %>
-                </tbody>
-            </table>
-        </div>    
-    </body>
+                        out.close();
+                    } catch (SQLException ex) {
+                        out.println(ex.toString());
+                    }
+                %>
+            </tbody>
+        </table>
+    </div>    
+</body>
 </html>

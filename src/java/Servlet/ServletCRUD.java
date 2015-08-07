@@ -69,6 +69,7 @@ public class ServletCRUD extends HttpServlet {
             boolean buscar = false;
             HttpSession session = request.getSession(true);
             String usuario = (String) session.getAttribute("usuario");
+            String id = request.getParameter("id");
             
             String nom = "";
             String color = "";
@@ -82,7 +83,7 @@ public class ServletCRUD extends HttpServlet {
             Statement st = cn.createStatement();
             ResultSet rs;
 
-            String consulta = "Select * from mascota where usuario='" + usuario + "' ;";
+            String consulta = "Select * from mascota where usuario='" + usuario + "'and idmascotas='"+ id + "' ;";
 
             rs = st.executeQuery(consulta);
 
