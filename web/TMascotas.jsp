@@ -56,7 +56,7 @@
     <a href="ServletRegistroMascotas" class="btn btn-success">Exportar tabla Excel</a>  
     <a href="Servletpdf" class="btn btn-success">Normas pdf</a> 
     <div class="container">
-        <center><h1>Tabla Mascotas del <%= u%></h1></center>
+        <center><h1>Tus Mascotas <%= u%></h1></center>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -74,7 +74,7 @@
 
             <%
                 try {
-                    boolean buscar = false;
+                    
 
                     String nombre = "";
                     String especie = "";
@@ -98,7 +98,7 @@
                         tamaño = rs.getString(4); 
                         usua = rs.getString(5);
                                              
-                        buscar = true;
+                        
 
             %>
             <tbody>
@@ -119,16 +119,18 @@
                     </td>
                     <!-- Operacion Ediatr -->
                     <td>
-                        <form action="ServletCRUD" method="post">
-                            <div class="form-group">                                    
+                        <form action="Editar.jsp" method="post">
+                            <div class="form-group">               
+                                <input type="hidden" name="id" value="<%= id%>" />
                                 <input type="submit" value="Editar" class="btn btn-warning"/>                                   
                             </div>
                         </form>
                     </td>
                     <!-- Operacion Eliminar -->
                     <td>
-                        <form action="ServletCRUD" method="Request">
-                            <div class="form-group">                                    
+                        <form action="Servletd" method="get">
+                            <div class="form-group">            
+                                <input type="hidden" name="id" value="<%= id%>" />
                                 <input type="submit" value="Eliminar" class="btn btn-danger"/>                                   
                             </div>
                         </form>
@@ -137,11 +139,6 @@
 
                 <%  }
 
-                        if (buscar) {
-
-                        } else {
-
-                        }
                         out.close();
                     } catch (SQLException ex) {
                         out.println(ex.toString());

@@ -98,9 +98,7 @@ public class ServletCRUD extends HttpServlet {
             }
             
             if (buscar) {
-
-                //Creamos la sesion 
-                
+ 
                 session.setAttribute("nom", nom);
                 session.setAttribute("color", color);
                 session.setAttribute("especie", especie);
@@ -109,10 +107,10 @@ public class ServletCRUD extends HttpServlet {
                 session.setAttribute("tamaño", tamaño);
                
                 //Mandamos estos atributos a la página bienvenida.jsp
-                request.getRequestDispatcher("/mostrar.jsp").forward(request, response);
+                request.getRequestDispatcher("/Mostrar.jsp").forward(request, response);
             } else {
                 //De lo contrario vamos a la página errorLogin.jsp
-                request.getRequestDispatcher("/ErrorInicio.jsp").forward(request, response);
+                request.getRequestDispatcher("/TMascotas.jsp").forward(request, response);
             }
             
         } catch (SQLException ex) {
@@ -134,22 +132,49 @@ public class ServletCRUD extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
          PrintWriter out = response.getWriter();
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletCRUD</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>servlet POST</h1>");
-            out.println("</body>");
-            out.println("</html>");
+     
+          try {
+                           
+           
+            
+            String id = request.getParameter("id");
+            String nombre = request.getParameter("nombre");
+            String color = request.getParameter("color");
+            String especie = request.getParameter("especie");
+            String raza = request.getParameter("raza");
+            String edad = request.getParameter("edad");
+            String tamaño = request.getParameter("tamano");
+            
+            
+            conectadb sqlite = new conectadb();
+            java.sql.Connection cn = sqlite.Conectar();
+            Statement st = cn.createStatement();
+            
+            String consulta = "update mascota set nombre='" +nombre+ "',color='" +color+ "',especie='" +especie+ "',raza='"+raza+"',edad='"+edad+"',tamaño='"+tamaño+"' where idmascotas='"+id+"'; ";
+            
+            int t = st.executeUpdate(consulta);
+            st.close();
+            
+            if(t == 1){
+             
+                //si todo fue exitoso Mandamos a la página TMascotas.jsp
+                request.getRequestDispatcher("/TMascotas.jsp").forward(request, response);
+                
+            }else{
+                request.getRequestDispatcher("/TMascotas.jsp").forward(request, response);
+            }
+            
+        } catch (SQLException ex) {
+            out.println(ex.toString());
+        }
+         
+         
+         
+         
+           
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
     @Override
     public String getServletInfo() {
         return "Short description";
