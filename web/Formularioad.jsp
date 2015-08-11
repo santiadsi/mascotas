@@ -1,7 +1,7 @@
 <%-- 
     Document   : Registro
     Created on : 27-abr-2015, 10:25:31
-    Author     : Andres
+    Author     : Santiago
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -33,8 +33,8 @@
                         </li>
 
                     </ul>
-                        
-                     <ul class="nav navbar-nav navbar-right">
+
+                    <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a><%= m%></a>
                         </li>
@@ -114,11 +114,6 @@
                                 </div>
                             </div>                      
                         </div>
-
-
-                        <div class="col-xs-10">
-
-                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-5 col-md-offset-2">
@@ -126,7 +121,6 @@
 
                         </div>
                     </div>
-
                 </fieldset> 
             </form>
         </div>

@@ -1,11 +1,7 @@
-#imagenlogo {
-    position: absolute;
-    top: 70px;
-    left: 5px;
-}
-
 body {
-    background-image: url("Imagenes/fondo.gif"); 
-    background-attachment:fixed;
-    background-position:center;
+    background-image: url("Imagenes/5.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;    
+    background-size: cover;
 }

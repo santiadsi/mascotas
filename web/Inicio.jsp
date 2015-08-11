@@ -18,9 +18,8 @@
         <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>        
         <link rel="stylesheet" href="newcss.css" type="text/css">   
         <link rel="Shortcut Icon" type="image/x-icon" href="Imagenes/Icono.png">
-    <img id="imagenlogo" src="Imagenes/Logo mascotas.png" alt="logo" height="230" width="415">
-    <script src="js/cargador.js"></script>
-    <link href="css/cargador.css" rel="stylesheet" />
+        <script src="js/cargador.js"></script>
+        <link href="css/cargador.css" rel="stylesheet" />
 </head> 
 <body>
     <nav class="navbar navbar-inverse">
@@ -41,7 +40,7 @@
     </nav>
 
     <div class="container">
-        <div class="col-xs-8 col-xs-offset-5">
+        <div class="col-xs-8 col-xs-offset-4">
             <form class="form-horizontal" action="Servletautenticacion" method="post">
                 <fieldset>
                     <legend>Iniciar Sesión</legend>
@@ -76,9 +75,6 @@
         </div>
     </div>
 
-    <%-- 
-    onclick = "alert('<%=    %>')"
-    --%>
     <%
         conectadb sqlite = new conectadb();
         Connection cn = sqlite.Conectar();
@@ -91,11 +87,13 @@
             res = "Conexión Fallida :( ";
         }
     %>
+    <!--
     <div class="container">
         <div class="col-xs-8">
             <input type="submit" value="Conexion" class="btn btn-success" onclick = "alert('<%= res%>')"/>
         </div>
     </div>
+    -->
 </body>
 </html>
 
