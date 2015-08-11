@@ -25,7 +25,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">                
-                    <a href="Inicio.jsp" class="navbar-header"><img src="Imagenes/Logo mascotas.png" alt="logo" height="55" width="110"> </a>      
+                    <a href="index.jsp" class="navbar-header"><img src="Imagenes/Logo mascotas.png" alt="logo" height="55" width="110"> </a>      
                 </div>
 
                 <div class="navbar-collapse collapse" id="navbar-main">
@@ -46,7 +46,7 @@
                             <a><%= u%></a>
                         </li>
                         <li>
-                            <a href="Inicio.jsp">Cerrar Sesión</a>
+                            <a href="index.jsp">Cerrar Sesión</a>
                         </li>
                     </ul>  
                 </div>

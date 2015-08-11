@@ -100,7 +100,7 @@ public class ServletRegistro extends HttpServlet {
             if(t == 1){
              
                 //Mandamos estos atributos a la página bienvenida.jsp
-                request.getRequestDispatcher("/Inicio.jsp").forward(request, response);
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
                 
             }else{
                 request.getRequestDispatcher("/ErrorInicio.jsp").forward(request, response);

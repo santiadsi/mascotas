@@ -107,7 +107,7 @@ public class ServletCRUD extends HttpServlet {
                 session.setAttribute("tamaño", tamaño);
                
                 //Mandamos estos atributos a la página bienvenida.jsp
-                request.getRequestDispatcher("/mostrar.jsp").forward(request, response);
+                request.getRequestDispatcher("/Mostrar.jsp").forward(request, response);
             } else {
                 //De lo contrario vamos a la página errorLogin.jsp
                 request.getRequestDispatcher("/TMascotas.jsp").forward(request, response);
