@@ -10,11 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Mascota</title>
-        <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/> 
-        <link rel="stylesheet" href="newcss.css" type="text/css">   
-        <link rel="Shortcut Icon" type="image/x-icon" href="Imagenes/Icono.png">
-        <script src="js/cargador.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
         <link href="css/cargador.css" rel="stylesheet" />
+        <link rel="stylesheet" href="newcss.css" type="text/css">   
+        <link rel="Shortcut Icon" type="image/x-icon" href="Imagenes/Icono.png">    
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/npm.js"></script>
+        <script src="js/cargador.js"></script>
         <%
             String m = (String) session.getAttribute("email");
             String u = (String) session.getAttribute("usuario");
@@ -33,9 +36,7 @@
                         <li>
                             <a href="Iniciologueo.jsp">Inicio</a>
                         </li> 
-                        <li>
-                            <a href="Formularioad.jsp">Formulario Adopcion</a>
-                        </li>
+                        
                         <li>
                             <a href="TMascotas.jsp">Mascotas</a>
                         </li>

@@ -11,13 +11,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Bienvenido</title>
-        <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/> 
-        <link rel="stylesheet" href="newcss.css" type="text/css">   
-        <link rel="Shortcut Icon" type="image/x-icon" href="Imagenes/Icono.png">
-        <script src="js/cargador.js"></script>
-        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
         <link href="css/cargador.css" rel="stylesheet" />
+        <link rel="stylesheet" href="newcss.css" type="text/css">   
+        <link rel="Shortcut Icon" type="image/x-icon" href="Imagenes/Icono.png">    
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/npm.js"></script>
+        <script src="js/cargador.js"></script>
         <!-- carrusel-->
         <link rel="stylesheet" type="text/css" href="engine1/style.css" />
         <script type="text/javascript" src="engine1/jquery.js"></script>
@@ -41,9 +42,7 @@
                         <li>
                             <a href="index.jsp">Inicio</a>
                         </li> 
-                        <li>
-                            <a href="Formularioad.jsp">Formulario Adopcion</a>
-                        </li>
+                      
                         <li>
                             <a href="TMascotas.jsp">Mascotas</a>
                         </li>

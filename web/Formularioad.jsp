@@ -8,16 +8,20 @@
 <!DOCTYPE html>
 <html>
     <%
-        String m = (String) session.getAttribute("email");
+        String u = (String) session.getAttribute("usuario");
+        String id = request.getParameter("id");
     %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Formulario</title>
-        <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/> 
-        <link rel="stylesheet" href="newcss.css" type="text/css">   
-        <link rel="Shortcut Icon" type="image/x-icon" href="Imagenes/Icono.png">
-        <script src="js/cargador.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
         <link href="css/cargador.css" rel="stylesheet" />
+        <link rel="stylesheet" href="newcss.css" type="text/css">   
+        <link rel="Shortcut Icon" type="image/x-icon" href="Imagenes/Icono.png">    
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/npm.js"></script>
+        <script src="js/cargador.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-inverse">
@@ -36,7 +40,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a><%= m%></a>
+                            <a><%= u%></a>
                         </li>
                         <li>
                             <a href="index.jsp">Cerrar Sesión</a>

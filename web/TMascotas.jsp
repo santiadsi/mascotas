@@ -1,7 +1,7 @@
 <%-- 
     Document   : TMascotas
     Created on : 2/06/2015, 11:45:55 AM
-    Author     : Andres
+    Author     : Santiago
 --%>
 
 <%@page import="java.sql.SQLException"%>
@@ -14,7 +14,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tabla Mascotas</title>
-        <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/> 
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
         <link href="css/cargador.css" rel="stylesheet" />
         <link rel="stylesheet" href="newcss.css" type="text/css">   
@@ -80,6 +79,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -120,7 +120,16 @@
                     <td><%= especie%></td>
                     <td><%= tamaño%></td>
                     <td><%= usua%></td>  
-
+                    
+                     <!-- Operacion Adoptar-->
+                    <td>
+                        <form action="Formularioad.jsp" method="post">                      
+                            <div class="form-group">                                                       
+                                <input type="hidden" name="id" value="<%= id%>" />
+                                <input type="submit" value="Adoptar" class="btn btn-success"/>
+                            </div>
+                        </form>
+                    </td>
                     <!-- Operacion Mostrar -->
                     <td>
                         <form action="ServletCRUD" method="get">                      
