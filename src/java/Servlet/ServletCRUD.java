@@ -111,7 +111,7 @@ public class ServletCRUD extends HttpServlet {
                 session.setAttribute("ta", ta);
                
                 //Mandamos estos atributos a la página bienvenida.jsp
-                request.getRequestDispatcher("/Mostrar.jsp").forward(request, response);
+                request.getRequestDispatcher("/Show.jsp").forward(request, response);
             } else {
                 //De lo contrario vamos a la página errorLogin.jsp
                 request.getRequestDispatcher("/TMascotas.jsp").forward(request, response);
