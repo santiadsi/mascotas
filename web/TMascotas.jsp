@@ -24,9 +24,9 @@
         <script src="js/cargador.js"></script>
        
         <%
-            String m = (String) session.getAttribute("email");
+            
             String u = (String) session.getAttribute("usuario");
-            String r = (String) session.getAttribute("rol");
+            
         %>
     </head>
 <body>

@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>mostrar</title>
+        <title>Mostrar</title>
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
         <link href="css/cargador.css" rel="stylesheet" />
         <link rel="stylesheet" href="newcss.css" type="text/css">   
@@ -24,7 +24,7 @@
             String e = (String) session.getAttribute("especie");
             String r = (String) session.getAttribute("raza");
             String edad = (String) session.getAttribute("edad");
-            String t = (String) session.getAttribute("tamaño");
+            String t = (String) session.getAttribute("ta");
             String u = (String) session.getAttribute("usuario");
         %>
     </head>

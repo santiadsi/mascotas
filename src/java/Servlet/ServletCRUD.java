@@ -67,23 +67,27 @@ public class ServletCRUD extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             boolean buscar = false;
+            
+            String id = request.getParameter("id");
             HttpSession session = request.getSession(true);
             String usuario = (String) session.getAttribute("usuario");
-            String id = request.getParameter("id");
+           
             
             String nom = "";
             String color = "";
             String especie = "";
             String raza = "";
             String edad = "";
-            String tamaño = "";
+            String ta = "";
             
             conectadb sqlite = new conectadb();
             java.sql.Connection cn = sqlite.Conectar();
             Statement st = cn.createStatement();
             ResultSet rs;
 
-            String consulta = "Select * from mascota where usuario='" + usuario + "'and idmascotas='"+ id + "' ;";
+            
+            
+            String consulta = "Select *from mascota where usuario='" + usuario + "'and idmascotas='"+ id + "';";
 
             rs = st.executeQuery(consulta);
 
@@ -93,7 +97,7 @@ public class ServletCRUD extends HttpServlet {
                 especie = rs.getString(4);
                 raza = rs.getString(5);
                 edad = rs.getString(6);
-                tamaño = rs.getString(8);
+                ta = rs.getString(8);
                 buscar = true;
             }
             
@@ -104,7 +108,7 @@ public class ServletCRUD extends HttpServlet {
                 session.setAttribute("especie", especie);
                 session.setAttribute("raza", raza);
                 session.setAttribute("edad", edad);
-                session.setAttribute("tamaño", tamaño);
+                session.setAttribute("ta", ta);
                
                 //Mandamos estos atributos a la página bienvenida.jsp
                 request.getRequestDispatcher("/Mostrar.jsp").forward(request, response);
@@ -112,6 +116,7 @@ public class ServletCRUD extends HttpServlet {
                 //De lo contrario vamos a la página errorLogin.jsp
                 request.getRequestDispatcher("/TMascotas.jsp").forward(request, response);
             }
+      
             
         } catch (SQLException ex) {
             out.println(ex.toString());
