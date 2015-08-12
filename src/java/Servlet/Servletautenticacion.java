@@ -81,7 +81,7 @@ public class Servletautenticacion extends HttpServlet {
             String contraseña = request.getParameter("password");
             String usuario = "";
             String rol = "";
-       
+            String idusuario = "";
             conectadb sqlite = new conectadb();
             java.sql.Connection cn = sqlite.Conectar();
             Statement st = cn.createStatement();
@@ -92,6 +92,7 @@ public class Servletautenticacion extends HttpServlet {
             rs = st.executeQuery(consulta);
 
             while (rs.next()) {
+                idusuario = rs.getString(1);
                 email = rs.getString(2);
                 usuario = rs.getString(4);
                 rol = rs.getString(5);
@@ -103,6 +104,7 @@ public class Servletautenticacion extends HttpServlet {
 
                 //Creamos la sesion 
                 HttpSession session = request.getSession(true);
+                session.setAttribute("idusuario", idusuario);
                 session.setAttribute("email", email);
                 session.setAttribute("usuario", usuario);
                 session.setAttribute("rol", rol);
