@@ -1,7 +1,7 @@
 <%-- 
     Document   : Inicio
     Created on : 16/04/2015, 01:06:30 PM
-    Author     : Andres
+    Author     : Santiago
 --%>
 
 <%@page import="java.sql.Connection"%>
@@ -28,8 +28,36 @@
         <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>   
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script src="js/cargador.js"></script>
+        <script>
+            var xmlhttp;
+            function loadXMLDoc(url,cfunc)
+            {
+            if (window.XMLHttpRequest)
+              {// code for IE7+, Firefox, Chrome, Opera, Safari
+              xmlhttp=new XMLHttpRequest();
+              }
+            else
+              {// code for IE6, IE5
+              xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+              }
+            xmlhttp.onreadystatechange=cfunc;
+            xmlhttp.open("GET",url,true);
+            xmlhttp.send();
+            }
+            function myFunction()
+            {
+            loadXMLDoc("Madopcion.jsp",function()
+              {
+              if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                }
+              });
+            }
+     </script>
 </head> 
 <body>
+<div id="myDiv">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">                
@@ -47,7 +75,11 @@
                     <li>
                         <a href="index.jsp">Inicio</a>
                     </li> 
-
+                    
+                    <li>
+                       <a onclick="myFunction()" href="#" >Tabla</a>
+                    </li> 
+                       
                 </ul>
             </div>
         </div>
@@ -87,6 +119,7 @@
             </form>
         </div>
     </div> 
+ </div>  
 </body>
 </html>
 
