@@ -9,12 +9,15 @@
 <html>
     <%
         String u = (String) session.getAttribute("usuario");
-        String nom = (String) session.getAttribute("nom");
         String id = (String) session.getAttribute("id");
+        String nom = (String) session.getAttribute("nom");
     %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Formulario</title>
+        <%--
+            llamamos a las carpetas de bootstrap, icono, y javascripts
+        --%>
          <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/cargador.css" rel="stylesheet" />
         <link rel="stylesheet" href="newcss.css" type="text/css">

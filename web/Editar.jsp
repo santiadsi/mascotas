@@ -13,6 +13,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edicion de mascota</title>
+        <%--
+            llamamos a las carpetas de bootstrap, icono, y javascripts
+        --%>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/cargador.css" rel="stylesheet" />
         <link rel="stylesheet" href="newcss.css" type="text/css">

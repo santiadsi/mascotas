@@ -152,7 +152,7 @@ public class Servletadoptame extends HttpServlet {
             if (t == 1) {
 
                 //Mandamos estos atributos a la página bienvenida.jsp
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/Madopcion.jsp").forward(request, response);
 
             } else {
                 

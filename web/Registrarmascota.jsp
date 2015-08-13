@@ -9,6 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%--
+            llamamos a las carpetas de bootstrap, icono, y javascripts
+        --%>
         <title>Registrar Mascota</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/cargador.css" rel="stylesheet" />
@@ -18,9 +21,9 @@
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script src="js/cargador.js"></script>
         <%
-            String m = (String) session.getAttribute("email");
+           
             String u = (String) session.getAttribute("usuario");
-            String r = (String) session.getAttribute("rol");
+            
         %>
     </head>
     <body>

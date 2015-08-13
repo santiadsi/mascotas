@@ -11,6 +11,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Bienvenido</title>
+        <%--
+            llamamos a las carpetas de bootstrap, icono, y javascripts
+        --%>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/cargador.css" rel="stylesheet" />
         <link rel="stylesheet" href="newcss.css" type="text/css">
@@ -49,7 +52,7 @@
                         </li> 
                       
                         <li>
-                            <a href="TMascotas.jsp">Mascotas</a>
+                            <a href="TMascotas.jsp">Mis mascotas</a>
                         </li>
                         <li>
                             <a href="Registrarmascota.jsp">Registrar Mascotas</a>

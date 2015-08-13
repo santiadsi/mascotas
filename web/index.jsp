@@ -8,11 +8,17 @@
 <%@page import="Controller.conectadb"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%--
+   invalidamos la session
+--%>
 <%
     session.invalidate();
 %>
 <html>
     <head>
+        <%--
+            llamamos a las carpetas de bootstrap, icono, y javascripts
+        --%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mascotas</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -77,31 +83,10 @@
                         </div>
                     </div>
 
-
                 </fieldset> 
             </form>
         </div>
-    </div>
-
-    <%
-        conectadb sqlite = new conectadb();
-        Connection cn = sqlite.Conectar();
-
-        String res = "";
-
-        if (cn != null) {
-            res = "Conexión Exitosa!";
-        } else {
-            res = "Conexión Fallida :( ";
-        }
-    %>
-    <!--
-    <div class="container">
-        <div class="col-xs-8">
-            <input type="submit" value="Conexion" class="btn btn-success" onclick = "alert('<%= res%>')"/>
-        </div>
-    </div>
-    -->
+    </div> 
 </body>
 </html>
 

@@ -14,6 +14,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Adopcion</title>
+        <%--
+            llamamos a las carpetas de bootstrap, icono, y javascripts
+        --%>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/cargador.css" rel="stylesheet" />
         <link rel="stylesheet" href="newcss.css" type="text/css">
@@ -58,7 +61,7 @@
                 </div>
             </div>
         </nav>
-        
+  <a href="Servletpdf" class="btn btn-success">Exportar a pdf</a>        
  <div class="container">
       <center><h1>Mascotas en adopcion</h1></center>
       <br>
@@ -140,10 +143,7 @@
             </tbody>
         </table>
     </div>    
-   </div> 
-        
-        
-        
+  </div> 
         
     </body>
 </html>

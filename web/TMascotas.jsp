@@ -13,7 +13,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tabla Mascotas</title>  
+        <title>Tabla Mascotas</title>
+        <%--
+            llamamos a las carpetas de bootstrap, icono, y javascripts
+        --%>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/cargador.css" rel="stylesheet" />
         <link rel="stylesheet" href="newcss.css" type="text/css">
@@ -65,7 +68,6 @@
      </nav>
                         
     <a href="ServletRegistroMascotas" class="btn btn-success">Exportar tabla Excel</a>  
-    <a href="Servletpdf" class="btn btn-success">Normas pdf</a> 
     
     <div class="container">
         <center><h1>Tus Mascotas <%= u%></h1></center>

@@ -5,6 +5,8 @@
  */
 package Servlet;
 
+import Controller.conectadb;
+import com.itextpdf.text.BaseColor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,10 +16,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
@@ -64,51 +72,154 @@ public class Servletpdf extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        try {
-            // step 1
+        try{
+            conectadb sqlite = new conectadb();
+            java.sql.Connection cn = sqlite.Conectar();
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT *FROM mascota;");
+
             Document document = new Document();
-            // step 2
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            PdfWriter.getInstance(document, baos);
-            // step 3
+            
+            response.setContentType("APPLICATION/download");
+            response.setHeader("Content-Disposition", "filename=Mascotas.pdf");
+            PdfWriter.getInstance(document, response.getOutputStream());
             document.open();
-            // step 4
-            document.add(new Paragraph(String.format(" Diez reglas básicas para tener una mascota sin peligros", request.getMethod())));
-            document.add(new Paragraph("   "));
-            document.add(new Paragraph(" 1. Estar informados sobre el animal que se va adquirir, sus necesidades, sus características y su comportamiento.\n"
-                    + "    2. Elegir un animal adecuado según las circunstancias personales de los individuosque van a convivir con el animal (edad,disponibilidad de espacio y de tiempo,economía, alergias, estatus inmunitario,carácter, etc.).\n"
-                    + "   3. Elegir animales sanos, con un origen de confianza. Sison especies que lo requieran, como las exóticas, que tengan su CITES (número de permiso deexportación/importación concedido para la comercialización de animales protegidos por elConvenio Internacional de Especies Amenazadas de Fauna y Flora Silvestres).\n"
-                    + "   4. Tener en cuenta que es una inversión a largo plazo y una gran responsabilidad, que va a requerir del propietario tiempo, atenciones y dinero.\n"
-                    + "    5. Control sanitario del animal. Visitas periódicas a lveterinario:  vacunaciones y desparasitaciones(interna y externa) en regla, exploraciones periódicas...\n"
-                    + "    6. Medidas higiénico sanitarias en el hogar: limpieza periódica del animal (baño, corte deuñas, limpieza de oídos, dientes, etc.) y sus utensilios (comederos, juguetes, camas, terrario,etc.).\n"
-                    + "     7. Realización en casa de exploraciones periódicas del animal y encuanto se observe algún síntoma extraño (aparición de heridas,bultos, toses, mocos, heces diarreicas, envolado en aves  cuando parecen estar hinchadas, postración, cambio de color en reptiles y anfibios, pérdida de pelo, falta de apetito, aumento o pérdida depeso rápido, etc.) acudir al veterinario.\n"
-                    + "     8. Proporcionar al animal todas sus necesidades tanto de alimentación, temperatura, agua,estimulación psicológica y motriz, cariño, etc. conforme a las características de la especie.\n"
-                    + "     9. Siempre que sea posible, identificar al animal mediante microchip para poder localizarlo si sepierde o es robado.\n"
-                    + "    10. Tener en cuenta que una mascota es un miembro más de la familia y por lo tanto se le debe proporcionar todo aquello que sea necesario parasu bienestar teniendo siempre en cuenta que es un animal, no un ser humano."));
-            // step 5
+                 
+            Image image = Image.getInstance("http://mascotaselarcadenoe.com/images/animales/venta-mascotas-animales.jpg");
+            image.scaleAbsolute(100, 100);
+            image.setAlignment(Element.ALIGN_CENTER);
+            document.add(image);
+            
+            Paragraph preface = new Paragraph("Mascotas en adopcion");
+            preface.setAlignment(Element.ALIGN_CENTER);
+            document.add(preface);
+
+            PdfPTable table = new PdfPTable(7); 
+            table.setWidthPercentage(100); 
+            table.setSpacingBefore(10f); //Space before table
+            table.setSpacingAfter(10f); //Space after table
+
+            //Set Column widths
+            float[] columnWidths = {1f, 1f, 1f, 1f, 1f, 1f, 1f};
+            table.setWidths(columnWidths);
+
+            PdfPCell cellnombre = new PdfPCell(new Paragraph("Nombre mascotas"));
+            cellnombre.setBorderColor(BaseColor.BLUE);
+            cellnombre.setPaddingLeft(10);
+            cellnombre.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cellnombre.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+            PdfPCell cellcolor = new PdfPCell(new Paragraph("Color"));
+            cellcolor.setBorderColor(BaseColor.BLUE);
+            cellcolor.setPaddingLeft(10);
+            cellcolor.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cellcolor.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+            PdfPCell cellespecie = new PdfPCell(new Paragraph("Especie"));
+            cellespecie.setBorderColor(BaseColor.BLUE);
+            cellespecie.setPaddingLeft(10);
+            cellespecie.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cellespecie.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+            PdfPCell cellraza = new PdfPCell(new Paragraph("Raza"));
+            cellraza.setBorderColor(BaseColor.BLUE);
+            cellraza.setPaddingLeft(10);
+            cellraza.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cellraza.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+            PdfPCell celledad = new PdfPCell(new Paragraph("Edad"));
+            celledad.setBorderColor(BaseColor.BLUE);
+            celledad.setPaddingLeft(10);
+            celledad.setHorizontalAlignment(Element.ALIGN_CENTER);
+            celledad.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            
+            PdfPCell celltamano = new PdfPCell(new Paragraph("Tamaño"));
+            celltamano.setBorderColor(BaseColor.BLUE);
+            celltamano.setPaddingLeft(10);
+            celltamano.setHorizontalAlignment(Element.ALIGN_CENTER);
+            celltamano.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            
+            PdfPCell cellusuario = new PdfPCell(new Paragraph("Usuario"));
+            cellusuario.setBorderColor(BaseColor.BLUE);
+            cellusuario.setPaddingLeft(10);
+            cellusuario.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cellusuario.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+            table.addCell(cellnombre);
+            table.addCell(cellcolor);
+            table.addCell(cellespecie);
+            table.addCell(cellraza);
+            table.addCell(celledad);
+            table.addCell(celltamano);
+            table.addCell(cellusuario);
+            
+            
+            
+
+            while (rs.next()) {
+
+                PdfPCell cell1 = new PdfPCell(new Paragraph(rs.getString(2)));
+                cell1.setPaddingLeft(1);
+                cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell1.setBackgroundColor(BaseColor.CYAN);
+                cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                table.addCell(cell1);
+
+                PdfPCell cell2 = new PdfPCell(new Paragraph(rs.getString(3)));
+                cell2.setPaddingLeft(2);
+                cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell2.setBackgroundColor(BaseColor.CYAN);
+                cell2.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                table.addCell(cell2);
+
+                PdfPCell cell3 = new PdfPCell(new Paragraph(rs.getString(4)));
+                cell3.setPaddingLeft(3);
+                cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell3.setBackgroundColor(BaseColor.CYAN);
+                cell3.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                table.addCell(cell3);
+
+                PdfPCell cell4 = new PdfPCell(new Paragraph(rs.getString(5)));
+                cell4.setPaddingLeft(4);
+                cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell4.setBackgroundColor(BaseColor.CYAN);
+                cell4.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                table.addCell(cell4);
+
+                PdfPCell cell5 = new PdfPCell(new Paragraph(rs.getString(6)));
+                cell5.setPaddingLeft(5);
+                cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell5.setBackgroundColor(BaseColor.CYAN);
+                cell5.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                table.addCell(cell5);
+                
+                PdfPCell cell6 = new PdfPCell(new Paragraph(rs.getString(8)));
+                cell6.setPaddingLeft(6);
+                cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell6.setBackgroundColor(BaseColor.CYAN);
+                cell6.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                table.addCell(cell6);
+                
+                PdfPCell cell7 = new PdfPCell(new Paragraph(rs.getString(7)));
+                cell7.setPaddingLeft(7);
+                cell7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell7.setBackgroundColor(BaseColor.CYAN);
+                cell7.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                table.addCell(cell7);
+
+            }
+
+            document.add(table);
+            //Add more content here
+            cn.close();
             document.close();
-
-            // setting some response headers
-            response.setHeader("Expires", "0");
-            response.setHeader("Cache-Control",
-                    "must-revalidate, post-check=0, pre-check=0");
-            response.setHeader("Pragma", "public");
-            // setting the content type
-            response.setContentType("application/pdf");
-            // the contentlength
-            response.setContentLength(baos.size());
-            // write ByteArrayOutputStream to the ServletOutputStream
-            OutputStream os = response.getOutputStream();
-            baos.writeTo(os);
-            os.flush();
-            os.close();
-        } catch (DocumentException e) {
-            throw new IOException(e.getMessage());
+        }catch (Exception e) {
+            e.printStackTrace();
         }
-
+        
     }
 
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *

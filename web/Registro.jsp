@@ -9,6 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%--
+            llamamos a las carpetas de bootstrap, icono, y javascripts
+        --%>
         <title>Registrate</title>
          <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/cargador.css" rel="stylesheet" />
